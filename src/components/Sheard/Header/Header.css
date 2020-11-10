@@ -1,0 +1,9 @@
+.header{
+    background-color: white;
+    padding: 20px;
+    border-bottom: 1px solid lightgrey;   
+}
+.brand-img{
+    width: 12rem;
+    object-fit: contain;
+}
