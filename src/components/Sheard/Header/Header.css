@@ -7,3 +7,13 @@
     width: 12rem;
     object-fit: contain;
 }
+.signup-form{
+    display: flex;
+    flex-direction: column;
+}
+.signup-form button{
+   margin-top: 30px;
+}
+.signup-form input{
+    margin: 20px 0;
+}

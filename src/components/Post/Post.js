@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { db } from '../../firebaseConfig';
 import './Post.css';
 import PostDetails from './PostDetails';
 
 
 const Post = () => {
-    const [posts,setPosts] = useState([
-        {
-         userName:'arefin_6',
-         caption:'wow good going dud',
-         imageUrl: "https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",   
-        },
-        {
-            userName:'asuSalek',
-            caption:'cool its insta',
-            imageUrl: "https://images.pexels.com/photos/4158007/pexels-photo-4158007.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"   
-        } 
-    ])
+    const [posts,setPosts] = useState([]);
 
+    useEffect(()=>{
+       db.collection('posts').onSnapshot(snapshot =>{
+          setPosts(snapshot.docs.map(doc =>({
+            id:doc.id,
+            post:doc.data()
+        
+        })))
+       }); 
+     },[]);
     return (
         <div >
             {
-             posts.map(post => <PostDetails post={post} />)   
+             posts.map(({post, id}) => <PostDetails key={id} post={post} />)   
             }  
         </div>
     );
