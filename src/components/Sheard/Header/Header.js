@@ -1,8 +1,9 @@
 import { Button, Input, Modal } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import './Header.css';
 import { auth } from '../../../firebaseConfig';
+import { UserContext } from '../../../App';
 
 const Header = () => {
     function getModalStyle() {
@@ -36,7 +37,7 @@ const Header = () => {
     const [userName,setUserName] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
-    const [user,setUser] = useState(null);
+    const [loggedInUser,setLoggedInUser] = useContext(UserContext);
     const [openLogin,setOpenLogin] = useState(false);
 
 
@@ -45,17 +46,17 @@ const Header = () => {
        const unsubscribe= auth.onAuthStateChanged((authUser)=>{
             if(authUser){
              console.log(authUser);
-             setUser(authUser);
+             setLoggedInUser(authUser);
             }
             else{
-               setUser(null); 
+               setLoggedInUser(null); 
             }
         })
 
         return () =>{
             unsubscribe();
         }
-    },[user]) 
+    },[loggedInUser]) 
 
 
      const handelSignUp = (e) =>{
@@ -154,7 +155,7 @@ const Header = () => {
          </div>
         </Modal> 
         {
-          user ? (
+          loggedInUser ? (
             <Button onClick={() => auth.signOut()}>Log Out</Button>   
           ):
           (
