@@ -1,7 +1,12 @@
 .header{
     background-color: white;
     padding: 20px;
-    border-bottom: 1px solid lightgrey;   
+    border-bottom: 1px solid lightgrey; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    position: sticky;
+    top:0;
 }
 .brand-img{
     width: 12rem;
@@ -17,3 +22,4 @@
 .signup-form input{
     margin: 20px 0;
 }
+

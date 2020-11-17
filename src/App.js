@@ -13,8 +13,8 @@ function App() {
     <div className="app">
       <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
        <Header></Header>
-       <CreatePost></CreatePost>
        <Post></Post>
+       <CreatePost></CreatePost>
        </UserContext.Provider>
        
     </div>

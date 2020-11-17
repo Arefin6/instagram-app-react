@@ -156,13 +156,13 @@ const Header = () => {
         </Modal> 
         {
           loggedInUser ? (
-            <Button onClick={() => auth.signOut()}>Log Out</Button>   
+            <Button onClick={() => auth.signOut()} variant="contained" color="primary">Log Out</Button>   
           ):
           (
             <div className="login-container">
           
-          <Button onClick={() => setOpen(true)}>Sign Up</Button>
-          <Button onClick={() => setOpenLogin(true)}>Login</Button>
+          <Button style={{marginLeft:'10px',marginRight:'10px'}} onClick={() => setOpen(true)} variant="contained" color="primary">Sign Up</Button>
+          <Button  style={{marginLeft:'10px',marginRight:'10px'}} onClick={() => setOpenLogin(true)} variant="contained" color="primary">Sign In</Button>
             </div>  
             
           )  

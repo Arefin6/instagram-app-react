@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { UserContext } from '../../App';
 import { db, storage } from '../../firebaseConfig';
 import firebase from 'firebase';
+import './CreatePost.css';
 
 
 const CreatePost = () => {
@@ -56,8 +57,8 @@ const CreatePost = () => {
         <div>
            {
             loggedInUser ?(
-                 <div>
-                 <progress value={progress} max="100" />   
+                 <div className="create-post-wraper">
+                 <progress className="progress" value={progress} max="100" />   
                 <input type="text" placeholder="Enter a caption.." onChange={e =>setCaption(e.target.value)} value={caption} />
                 <input type="file" onChange={handleFileChange}/>
                 <Button variant="contained" color="primary" onClick={handleUpload}>Upload</Button>   

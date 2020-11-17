@@ -1,6 +1,14 @@
 .post{
+   padding: 20px;
+   display: flex;
+   justify-content: center;
+}
+.post-right{
+    margin-left: 20px;
+}
+.post-details{
     background-color: white;
-    max-width: 500px;
+    max-width: 600px;
     border:1px solid lightgray ;
     margin-bottom: 45px;
     margin-top: 20px;
@@ -24,4 +32,29 @@
 }
 .post-avatar{
     margin-right: 15px;
+}
+.comment-box{
+    display: flex;
+    margin-top: 10px;
+}
+.comment-input{
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-top: 1px solid lightgrey;
+}
+.comment-btn{
+  flex:0;
+  padding: 10px;
+  border: none;
+  border-top: 1px solid lightgrey;
+  color: #6082a3;
+  background: transparent;
+}
+.post-comments{
+    padding: 20px;
+    
+}
+.post-comments p{
+   padding: 20px;  
 }
