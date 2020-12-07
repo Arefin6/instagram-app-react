@@ -43,11 +43,11 @@ const PostDetails = ({post,postId}) => {
             <div className="post-header">
             <Avatar
              className="post-avatar"
-             alt={post.userName}
+             alt={post.user}
              src="/static/images/avatar/1.jpg" />
-            <h3>{post.userName}</h3>
+            <h3>{post.user}</h3>
             </div> 
-           <img className="post-img" src={post.imageUrl} alt=""/>
+           <img className="post-img" src={post.image} alt=""/>
             <h4 className="post-text"><strong style={{marginRight:"10px"}}>{post.userName}</strong>{post.caption} </h4>
              
              

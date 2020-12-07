@@ -4,6 +4,7 @@ import { UserContext } from '../../App';
 import { db, storage } from '../../firebaseConfig';
 import firebase from 'firebase';
 import './CreatePost.css';
+import axios from '../../axios';
 
 
 const CreatePost = () => {
@@ -38,6 +39,15 @@ const CreatePost = () => {
                .getDownloadURL()
                .then(url =>{
                    //Save to db
+                    axios.post('/upload',{
+                      
+                        caption:caption,
+                        image:url,
+                        user:loggedInUser.displayName
+
+                    });
+
+
                    db.collection('posts').add({
                      timestamp:firebase.firestore.FieldValue.serverTimestamp(),
                      caption:caption,

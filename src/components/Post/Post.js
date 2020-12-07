@@ -3,25 +3,38 @@ import { db } from '../../firebaseConfig';
 import './Post.css';
 import PostDetails from './PostDetails';
 import InstagramEmbed from 'react-instagram-embed';
+import axios from '../../axios';
+import Pusher from 'pusher-js';
 
 
 const Post = () => {
     const [posts,setPosts] = useState([]);
 
+    const fetchPosts = async () =>{
+        await axios.get('/sync').then(res =>{
+         setPosts(res.data);
+        });
+    };
+
     useEffect(()=>{
-       db.collection('posts').orderBy('timestamp','desc').onSnapshot(snapshot =>{
-          setPosts(snapshot.docs.map(doc =>({
-            id:doc.id,
-            post:doc.data()
-        
-        })))
-       }); 
+        const pusher = new Pusher('b12d47ab6c6f1853fd04', {
+            cluster: 'mt1'
+          });
+      
+          const channel = pusher.subscribe('posts');
+          channel.bind('inserted', (data) => {
+            fetchPosts();
+          });
+    },[]);
+
+    useEffect(()=>{
+          fetchPosts();
      },[]);
     return (
         <div className="post">
            <div className="post-left">
            {
-             posts.map(({post, id}) => <PostDetails key={id} post={post} postId={id} />)   
+             posts.map((post) => <PostDetails key={post._id} post={post} postId={post._id} />)   
             }  
             </div>
             <div className="post-right">
